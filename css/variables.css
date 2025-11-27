@@ -1,0 +1,216 @@
+/**
+ * THE VILLAGE - Design System Variables
+ * Application de gestion pour Pacala Group
+ * Dernière mise à jour : 27/11/2025
+ */
+
+:root {
+  /* ========================================
+     COULEURS PRINCIPALES (RESTAURANTS)
+     ======================================== */
+
+  /* Vegas Kitchen - Bleu doux */
+  --color-vegas: #6B9BD2;
+  --color-vegas-light: rgba(107, 155, 210, 0.1);
+  --color-vegas-medium: rgba(107, 155, 210, 0.3);
+
+  /* La Crêpe au Carré - Vert sauge */
+  --color-crepe: #7DB88F;
+  --color-crepe-light: rgba(125, 184, 143, 0.1);
+  --color-crepe-medium: rgba(125, 184, 143, 0.3);
+
+  /* Rentabilité Globale - Rose poudré */
+  --color-rentabilite: #D4A5A5;
+  --color-rentabilite-light: rgba(212, 165, 165, 0.1);
+  --color-rentabilite-medium: rgba(212, 165, 165, 0.3);
+
+  /* ========================================
+     LOGO PACALA GROUP
+     ======================================== */
+  --color-pacala-gradient-start: #1e40af;
+  --color-pacala-gradient-end: #3b82f6;
+  --color-pacala-dark: #1e3a8a;
+  --color-pacala-light: #3b82f6;
+
+  /* ========================================
+     COULEURS DE FOND
+     ======================================== */
+  --bg-primary: #FDF8F3;      /* Crème - Fond principal */
+  --bg-card: #FFFFFF;         /* Blanc cassé - Fond cartes */
+  --bg-secondary: #F5EFE6;    /* Beige clair - Fond secondaire */
+
+  /* ========================================
+     COULEURS DE TEXTE
+     ======================================== */
+  --text-primary: #4A4033;    /* Brun foncé - Texte principal */
+  --text-secondary: #8B7E6A;  /* Brun moyen - Texte secondaire */
+  --text-light: #B8A99A;      /* Taupe - Texte clair */
+
+  /* ========================================
+     COULEURS DE BORDURE
+     ======================================== */
+  --border-color: #E8E0D5;
+  --border-color-light: #F0EBE3;
+
+  /* ========================================
+     COULEURS D'ALERTE
+     ======================================== */
+  --color-success: #7DB88F;   /* Vert doux - Succès / OK */
+  --color-warning: #E8C87D;   /* Jaune miel - Attention */
+  --color-caution: #E8A87D;   /* Orange abricot - Vigilance */
+  --color-danger: #D4736A;    /* Rouge terracotta - Alerte */
+
+  /* Variantes légères pour backgrounds */
+  --color-success-light: rgba(125, 184, 143, 0.15);
+  --color-warning-light: rgba(232, 200, 125, 0.15);
+  --color-caution-light: rgba(232, 168, 125, 0.15);
+  --color-danger-light: rgba(212, 115, 106, 0.15);
+
+  /* ========================================
+     TYPOGRAPHIE
+     ======================================== */
+
+  /* Familles de polices */
+  --font-logo: 'Quicksand', 'Arial Rounded MT Bold', sans-serif;
+  --font-heading: 'Quicksand', 'Arial Rounded MT Bold', sans-serif;
+  --font-body: 'Nunito', 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', 'Consolas', monospace;
+
+  /* Tailles de police */
+  --font-size-logo: 32px;
+  --font-size-h1: 24px;
+  --font-size-h2: 18px;
+  --font-size-body: 14px;
+  --font-size-small: 12px;
+  --font-size-xs: 10px;
+
+  /* Poids de police */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Hauteurs de ligne */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ========================================
+     ESPACEMENTS
+     ======================================== */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 48px;
+
+  /* Espacements spécifiques */
+  --page-margin: 24px;
+  --card-gap: 16px;
+  --card-padding: 20px;
+  --field-gap: 12px;
+
+  /* ========================================
+     RAYONS DE BORDURE
+     ======================================== */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Rayons spécifiques */
+  --radius-button: 12px;
+  --radius-card: 16px;
+  --radius-input: 10px;
+  --radius-pacala-icon: 12px;
+
+  /* ========================================
+     OMBRES
+     ======================================== */
+  --shadow-sm: 0 1px 2px rgba(74, 64, 51, 0.05);
+  --shadow-md: 0 4px 6px rgba(74, 64, 51, 0.07);
+  --shadow-lg: 0 10px 15px rgba(74, 64, 51, 0.1);
+  --shadow-xl: 0 20px 25px rgba(74, 64, 51, 0.12);
+
+  /* ========================================
+     TRANSITIONS
+     ======================================== */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* ========================================
+     Z-INDEX
+     ======================================== */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-modal-backdrop: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+
+  /* ========================================
+     DIMENSIONS
+     ======================================== */
+  --header-height: 64px;
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 64px;
+  --max-content-width: 1200px;
+
+  /* Logo Pacala */
+  --pacala-icon-size: 50px;
+
+  /* ========================================
+     SEUILS D'ALERTE EBE
+     ======================================== */
+
+  /* Masse salariale */
+  --seuil-masse-sal-vert: 28;      /* < 28% */
+  --seuil-masse-sal-jaune: 32;     /* 28-32% */
+  --seuil-masse-sal-orange: 35;    /* 32-35% */
+  /* > 35% = rouge */
+
+  /* Achats */
+  --seuil-achats-vert: 21;         /* < 21% */
+  /* >= 21% = rouge */
+
+  /* Écart caisse */
+  --seuil-ecart-caisse: 5;         /* > 5€ = commentaire obligatoire */
+}
+
+/* ========================================
+   THÈME PAR RESTAURANT (classes utilitaires)
+   ======================================== */
+
+/* Vegas Kitchen */
+.theme-vegas {
+  --color-current: var(--color-vegas);
+  --color-current-light: var(--color-vegas-light);
+  --color-current-medium: var(--color-vegas-medium);
+}
+
+/* La Crêpe au Carré */
+.theme-crepe {
+  --color-current: var(--color-crepe);
+  --color-current-light: var(--color-crepe-light);
+  --color-current-medium: var(--color-crepe-medium);
+}
+
+/* Rentabilité Globale */
+.theme-rentabilite {
+  --color-current: var(--color-rentabilite);
+  --color-current-light: var(--color-rentabilite-light);
+  --color-current-medium: var(--color-rentabilite-medium);
+}
+
+/* Neutre (avant sélection restaurant) */
+.theme-neutral {
+  --color-current: var(--text-secondary);
+  --color-current-light: var(--bg-secondary);
+  --color-current-medium: var(--border-color);
+}

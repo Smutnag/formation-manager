@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="THE VILLAGE - Application de gestion pour Pacala Group">
+  <title>THE VILLAGE - Connexion</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+
+  <style>
+    /* Styles spécifiques à la page login */
+    .login-pacala-logo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .login-village-logo {
+      text-align: center;
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .login-village-logo h1 {
+      font-family: var(--font-logo);
+      font-size: 36px;
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .login-village-logo .tagline {
+      font-size: var(--font-size-body);
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    .login-village-logo .tagline-sub {
+      font-size: var(--font-size-small);
+      color: var(--text-light);
+      margin-top: var(--spacing-xs);
+    }
+
+    .login-form {
+      margin-top: var(--spacing-2xl);
+    }
+
+    .login-footer {
+      text-align: center;
+      margin-top: var(--spacing-2xl);
+      padding-top: var(--spacing-xl);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .login-footer p {
+      font-size: var(--font-size-small);
+      color: var(--text-light);
+    }
+
+    .login-error {
+      display: none;
+      margin-top: var(--spacing-md);
+    }
+
+    .login-error.show {
+      display: block;
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: var(--spacing-md);
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: var(--spacing-xs);
+    }
+
+    .password-toggle:hover {
+      color: var(--text-primary);
+    }
+  </style>
+</head>
+<body class="theme-neutral">
+  <div class="page-login">
+    <div class="login-container animate-fade-in">
+
+      <!-- Logo Pacala Group (petit) -->
+      <div class="login-pacala-logo">
+        <div class="pacala-logo pacala-logo-sm">
+          <div class="pacala-icon">P</div>
+          <div class="pacala-text">
+            <span class="pacala-name">Pacala</span>
+            <span class="pacala-group">Group</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carte de connexion -->
+      <div class="login-card">
+
+        <!-- Logo THE VILLAGE -->
+        <div class="login-village-logo">
+          <h1>THE VILLAGE</h1>
+          <p class="tagline">Bienvenue chez vous</p>
+          <p class="tagline-sub">Votre gestion, simplifiee</p>
+        </div>
+
+        <!-- Formulaire de connexion -->
+        <form class="login-form" id="loginForm">
+          <!-- Selection utilisateur -->
+          <div class="form-group">
+            <label class="form-label" for="userSelect">
+              <i data-lucide="user" class="icon icon-sm"></i>
+              Utilisateur
+            </label>
+            <select class="form-select" id="userSelect" required>
+              <option value="">Selectionnez votre prenom...</option>
+              <option value="elisa">Elisa</option>
+              <option value="carolina">Carolina</option>
+              <option value="charlotte">Charlotte</option>
+              <option value="sephana">Sephana</option>
+              <option value="shaina">Shaina</option>
+              <option value="remi">Remi</option>
+              <option value="orlane">Orlane</option>
+              <option value="kt">KT</option>
+            </select>
+          </div>
+
+          <!-- Mot de passe -->
+          <div class="form-group">
+            <label class="form-label" for="password">
+              <i data-lucide="lock" class="icon icon-sm"></i>
+              Mot de passe
+            </label>
+            <div class="password-wrapper">
+              <input
+                type="password"
+                class="form-input"
+                id="password"
+                placeholder="Entrez votre mot de passe"
+                required
+              >
+              <button type="button" class="password-toggle" id="passwordToggle" aria-label="Afficher/masquer le mot de passe">
+                <i data-lucide="eye" id="eyeIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Message d'erreur -->
+          <div class="alert alert-danger login-error" id="loginError">
+            <i data-lucide="alert-circle" class="icon"></i>
+            <span id="errorMessage">Identifiants incorrects</span>
+          </div>
+
+          <!-- Bouton de connexion -->
+          <button type="submit" class="btn btn-primary btn-block btn-lg" id="loginBtn">
+            <i data-lucide="log-in" class="icon"></i>
+            ENTRER
+          </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="login-footer">
+          <p>Pacala Group - THE VILLAGE</p>
+          <p>Gestion des restaurants</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/auth.js"></script>
+  <script>
+    // Initialisation des icones Lucide
+    lucide.createIcons();
+
+    // Toggle password visibility
+    const passwordToggle = document.getElementById('passwordToggle');
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    passwordToggle.addEventListener('click', () => {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      eyeIcon.setAttribute('data-lucide', type === 'password' ? 'eye' : 'eye-off');
+      lucide.createIcons();
+    });
+
+    // Form submission
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const errorMessage = document.getElementById('errorMessage');
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('userSelect').value;
+      const password = document.getElementById('password').value;
+
+      // Hide previous error
+      loginError.classList.remove('show');
+
+      try {
+        const result = await Auth.login(username, password);
+
+        if (result.success) {
+          // Redirect to restaurant selection
+          window.location.href = 'selection.html';
+        } else {
+          errorMessage.textContent = result.message || 'Identifiants incorrects';
+          loginError.classList.add('show');
+        }
+      } catch (error) {
+        errorMessage.textContent = 'Erreur de connexion. Veuillez reessayer.';
+        loginError.classList.add('show');
+      }
+    });
+  </script>
+</body>
+</html>

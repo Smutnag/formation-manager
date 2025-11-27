@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="THE VILLAGE - Dashboard">
+  <title>THE VILLAGE - Dashboard</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Nunito:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/layout.css">
+
+  <style>
+    /* Styles specifiques au dashboard */
+    .dashboard-card .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-current-light);
+      color: var(--color-current);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .dashboard-card .card-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-2xl);
+    }
+
+    .quick-action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-xl);
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      color: var(--text-primary);
+      text-decoration: none;
+      transition: all var(--transition-normal);
+    }
+
+    .quick-action-btn:hover {
+      border-color: var(--color-current);
+      background-color: var(--color-current-light);
+      transform: translateY(-2px);
+    }
+
+    .quick-action-btn .action-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--bg-secondary);
+      color: var(--color-current);
+    }
+
+    .quick-action-btn:hover .action-icon {
+      background-color: var(--color-current);
+      color: white;
+    }
+
+    .quick-action-btn .action-label {
+      font-weight: var(--font-weight-medium);
+      font-size: var(--font-size-small);
+    }
+
+    .toast-container {
+      position: fixed;
+      top: var(--spacing-xl);
+      right: var(--spacing-xl);
+      z-index: var(--z-toast);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md) var(--spacing-lg);
+      background-color: var(--bg-card);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border-left: 4px solid;
+      min-width: 300px;
+    }
+
+    .toast-success {
+      border-left-color: var(--color-success);
+    }
+
+    .toast-warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .toast-danger {
+      border-left-color: var(--color-danger);
+    }
+
+    .toast-info {
+      border-left-color: var(--color-vegas);
+    }
+
+    .toast-content {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .toast-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-light);
+      padding: var(--spacing-xs);
+    }
+
+    .toast-close:hover {
+      color: var(--text-primary);
+    }
+
+    .fade-out {
+      opacity: 0;
+      transform: translateX(100px);
+      transition: all 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-layout">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle">
+          <i data-lucide="menu"></i>
+        </button>
+        <div class="pacala-logo pacala-logo-sm">
+          <div class="pacala-icon">P</div>
+          <div class="pacala-text">
+            <span class="pacala-name">Pacala</span>
+            <span class="pacala-group">Group</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-center">
+        <div class="restaurant-indicator">
+          <span class="indicator-dot"></span>
+          <span class="restaurant-name" id="restaurantName">Restaurant</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="dropdown">
+          <button class="user-menu dropdown-toggle">
+            <span class="user-avatar" id="userAvatar">?</span>
+            <span class="user-name" id="headerUserName">Utilisateur</span>
+            <i data-lucide="chevron-down" class="icon-sm"></i>
+          </button>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item" id="changeRestaurantBtn">
+              <i data-lucide="repeat" class="icon-sm"></i>
+              Changer de restaurant
+            </a>
+            <div class="dropdown-divider"></div>
+            <a href="#" class="dropdown-item" id="logoutBtn">
+              <i data-lucide="log-out" class="icon-sm"></i>
+              Deconnexion
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Menu principal</div>
+          <a href="dashboard.html" class="nav-item active">
+            <i data-lucide="layout-dashboard" class="nav-icon"></i>
+            Dashboard
+          </a>
+          <a href="caisses.html" class="nav-item">
+            <i data-lucide="wallet" class="nav-icon"></i>
+            Caisses
+          </a>
+          <a href="depots.html" class="nav-item">
+            <i data-lucide="landmark" class="nav-icon"></i>
+            Depots
+          </a>
+          <a href="achats.html" class="nav-item">
+            <i data-lucide="shopping-cart" class="nav-icon"></i>
+            Achats
+          </a>
+          <a href="ebe.html" class="nav-item">
+            <i data-lucide="trending-up" class="nav-icon"></i>
+            EBE
+          </a>
+        </div>
+
+        <div class="nav-section" data-require-access="historique">
+          <div class="nav-section-title">Historique</div>
+          <a href="historique.html" class="nav-item">
+            <i data-lucide="history" class="nav-icon"></i>
+            Historique Caisses
+          </a>
+        </div>
+
+        <div class="nav-section" data-require-admin>
+          <div class="nav-section-title">Administration</div>
+          <a href="parametres.html" class="nav-item">
+            <i data-lucide="settings" class="nav-icon"></i>
+            Parametres
+          </a>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="selection.html" class="nav-item">
+          <i data-lucide="arrow-left" class="nav-icon"></i>
+          Retour selection
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div>
+          <h1 class="page-title">Dashboard</h1>
+          <p class="page-subtitle" id="restaurantFullName">Vegas Kitchen</p>
+        </div>
+        <div class="page-actions">
+          <button class="btn btn-primary" onclick="window.location.href='caisses.html'">
+            <i data-lucide="plus" class="icon-sm"></i>
+            Nouvelle caisse
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard Cards -->
+      <div class="dashboard-grid">
+        <!-- CA du jour -->
+        <div class="card dashboard-card animate-fade-in">
+          <div class="card-icon">
+            <i data-lucide="calendar-days"></i>
+          </div>
+          <div class="dashboard-card-value" id="caJour">-- €</div>
+          <div class="dashboard-card-label">CA du jour</div>
+          <div class="dashboard-card-trend" id="caJourTrend">
+            <i data-lucide="trending-up" class="icon-sm"></i>
+            <span>vs N-1</span>
+          </div>
+        </div>
+
+        <!-- CA semaine -->
+        <div class="card dashboard-card animate-fade-in" style="animation-delay: 50ms">
+          <div class="card-icon">
+            <i data-lucide="calendar-range"></i>
+          </div>
+          <div class="dashboard-card-value" id="caSemaine">-- €</div>
+          <div class="dashboard-card-label">CA semaine</div>
+          <div class="dashboard-card-trend" id="caSemaineTrend">
+            <i data-lucide="trending-up" class="icon-sm"></i>
+            <span>vs N-1</span>
+          </div>
+        </div>
+
+        <!-- CA mois -->
+        <div class="card dashboard-card animate-fade-in" style="animation-delay: 100ms">
+          <div class="card-icon">
+            <i data-lucide="calendar"></i>
+          </div>
+          <div class="dashboard-card-value" id="caMois">-- €</div>
+          <div class="dashboard-card-label">CA mois (MTD)</div>
+          <div class="dashboard-card-trend" id="caMoisTrend">
+            <i data-lucide="target" class="icon-sm"></i>
+            <span>Projection: -- €</span>
+          </div>
+        </div>
+
+        <!-- Derniere caisse -->
+        <div class="card dashboard-card animate-fade-in" style="animation-delay: 150ms">
+          <div class="card-icon">
+            <i data-lucide="receipt"></i>
+          </div>
+          <div class="dashboard-card-value" id="derniereCaisse">-- €</div>
+          <div class="dashboard-card-label">Derniere caisse</div>
+          <div class="dashboard-card-trend" id="derniereCaisseDate">
+            <i data-lucide="clock" class="icon-sm"></i>
+            <span>--/--/----</span>
+          </div>
+        </div>
+
+        <!-- Depots en attente -->
+        <div class="card dashboard-card animate-fade-in" style="animation-delay: 200ms">
+          <div class="card-icon">
+            <i data-lucide="hourglass"></i>
+          </div>
+          <div class="dashboard-card-value" id="depotsAttente">0</div>
+          <div class="dashboard-card-label">Depots en attente</div>
+          <div class="dashboard-card-trend" id="depotsTotal">
+            <i data-lucide="banknote" class="icon-sm"></i>
+            <span>Total: -- €</span>
+          </div>
+        </div>
+
+        <!-- EBE du mois -->
+        <div class="card dashboard-card animate-fade-in" style="animation-delay: 250ms">
+          <div class="card-icon">
+            <i data-lucide="trending-up"></i>
+          </div>
+          <div class="dashboard-card-value" id="ebeMois">-- €</div>
+          <div class="dashboard-card-label">EBE du mois</div>
+          <div class="dashboard-card-trend" id="ebePercent">
+            <i data-lucide="percent" class="icon-sm"></i>
+            <span>-- % du CA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Acces rapide -->
+      <h2 style="margin-top: var(--spacing-3xl); margin-bottom: var(--spacing-lg);">Acces rapide</h2>
+      <div class="quick-actions">
+        <a href="caisses.html" class="quick-action-btn">
+          <div class="action-icon">
+            <i data-lucide="wallet"></i>
+          </div>
+          <span class="action-label">Saisir une caisse</span>
+        </a>
+        <a href="depots.html" class="quick-action-btn">
+          <div class="action-icon">
+            <i data-lucide="landmark"></i>
+          </div>
+          <span class="action-label">Gerer les depots</span>
+        </a>
+        <a href="achats.html" class="quick-action-btn">
+          <div class="action-icon">
+            <i data-lucide="shopping-cart"></i>
+          </div>
+          <span class="action-label">Saisir un achat</span>
+        </a>
+        <a href="ebe.html" class="quick-action-btn">
+          <div class="action-icon">
+            <i data-lucide="bar-chart-2"></i>
+          </div>
+          <span class="action-label">Voir l'EBE</span>
+        </a>
+        <a href="historique.html" class="quick-action-btn" data-require-access="historique">
+          <div class="action-icon">
+            <i data-lucide="history"></i>
+          </div>
+          <span class="action-label">Historique</span>
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="../js/auth.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    // Verification de l'authentification et du restaurant
+    Auth.checkAuth({ requireLogin: true, requireRestaurant: true });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mise a jour des infos restaurant
+      const restaurant = Auth.getRestaurantInfo();
+      if (restaurant) {
+        document.getElementById('restaurantName').textContent = restaurant.shortName;
+        document.getElementById('restaurantFullName').textContent = restaurant.name;
+      }
+
+      // Initialisation des icones
+      lucide.createIcons();
+
+      // Donnees de demo (en production: chargement depuis l'API)
+      loadDemoData();
+    });
+
+    // Chargement des donnees de demo
+    function loadDemoData() {
+      // Simulation de donnees
+      setTimeout(() => {
+        document.getElementById('caJour').textContent = Utils.formatCurrency(1250.50);
+        document.getElementById('caSemaine').textContent = Utils.formatCurrency(8750.00);
+        document.getElementById('caMois').textContent = Utils.formatCurrency(24500.00);
+        document.getElementById('derniereCaisse').textContent = Utils.formatCurrency(1180.75);
+        document.getElementById('depotsAttente').textContent = '3';
+        document.getElementById('ebeMois').textContent = Utils.formatCurrency(4200.00);
+
+        // Tendances
+        document.getElementById('caJourTrend').innerHTML = `
+          <i data-lucide="trending-up" class="icon-sm"></i>
+          <span>+8.5% vs N-1</span>
+        `;
+        document.getElementById('caJourTrend').classList.add('positive');
+
+        document.getElementById('caSemaineTrend').innerHTML = `
+          <i data-lucide="trending-up" class="icon-sm"></i>
+          <span>+5.2% vs N-1</span>
+        `;
+        document.getElementById('caSemaineTrend').classList.add('positive');
+
+        document.getElementById('caMoisTrend').innerHTML = `
+          <i data-lucide="target" class="icon-sm"></i>
+          <span>Projection: ${Utils.formatCurrency(32000)}</span>
+        `;
+
+        document.getElementById('derniereCaisseDate').innerHTML = `
+          <i data-lucide="clock" class="icon-sm"></i>
+          <span>${Utils.formatDate(new Date())}</span>
+        `;
+
+        document.getElementById('depotsTotal').innerHTML = `
+          <i data-lucide="banknote" class="icon-sm"></i>
+          <span>Total: ${Utils.formatCurrency(3540.25)}</span>
+        `;
+
+        document.getElementById('ebePercent').innerHTML = `
+          <i data-lucide="percent" class="icon-sm"></i>
+          <span>17.1% du CA</span>
+        `;
+        document.getElementById('ebePercent').classList.add('positive');
+
+        // Reinitialiser les icones
+        lucide.createIcons();
+      }, 500);
+    }
+  </script>
+</body>
+</html>

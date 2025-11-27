@@ -1,0 +1,596 @@
+/**
+ * THE VILLAGE - Pages CSS
+ * Styles specifiques par page
+ * Derniere mise a jour : 27/11/2025
+ */
+
+/* ========================================
+   PAGE CAISSES
+   ======================================== */
+
+.caisse-wizard {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.caisse-step {
+  display: none;
+}
+
+.caisse-step.active {
+  display: block;
+}
+
+.comptage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.comptage-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+.comptage-item label {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+.comptage-item input {
+  width: 80px;
+  text-align: right;
+}
+
+.comptage-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background-color: var(--color-current-light);
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.comptage-total-label {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.comptage-total-value {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-current);
+}
+
+/* Liste dynamique (CB, TR) */
+.dynamic-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.dynamic-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+}
+
+.dynamic-list-item .form-input {
+  flex: 1;
+}
+
+.dynamic-list-item .btn-remove {
+  padding: var(--spacing-sm);
+  color: var(--color-danger);
+}
+
+.add-line-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.add-line-btn:hover {
+  border-color: var(--color-current);
+  color: var(--color-current);
+}
+
+/* Controle caisse */
+.controle-recap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.controle-item {
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.controle-item.rapport-z {
+  background-color: var(--bg-secondary);
+}
+
+.controle-item.total-saisi {
+  background-color: var(--color-current-light);
+}
+
+.controle-item .value {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.controle-item .label {
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+.ecart-display {
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.ecart-display.ok {
+  background-color: var(--color-success-light);
+  border: 1px solid var(--color-success);
+}
+
+.ecart-display.warning {
+  background-color: var(--color-caution-light);
+  border: 1px solid var(--color-caution);
+}
+
+.ecart-display.danger {
+  background-color: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+}
+
+/* ========================================
+   PAGE DEPOTS
+   ======================================== */
+
+.depots-table {
+  margin-top: var(--spacing-xl);
+}
+
+.depot-status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.depot-status.attente {
+  color: var(--color-warning);
+}
+
+.depot-status.depose {
+  color: var(--color-success);
+}
+
+.depot-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.selected-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  background-color: var(--color-current-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.selected-count {
+  font-weight: var(--font-weight-semibold);
+}
+
+.selected-total {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-current);
+}
+
+/* ========================================
+   PAGE ACHATS
+   ======================================== */
+
+.achat-form {
+  max-width: 600px;
+}
+
+.achats-list {
+  margin-top: var(--spacing-2xl);
+}
+
+.achat-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.achat-info {
+  flex: 1;
+}
+
+.achat-fournisseur {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.achat-details {
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-xs);
+}
+
+.achat-montant {
+  text-align: right;
+}
+
+.achat-montant .ht {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.achat-montant .ttc {
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+/* ========================================
+   PAGE EBE
+   ======================================== */
+
+.ebe-views {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+@media (max-width: 1024px) {
+  .ebe-views {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ebe-view-card {
+  padding: var(--spacing-lg);
+}
+
+.ebe-view-title {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-lg);
+}
+
+.ebe-table {
+  width: 100%;
+}
+
+.ebe-table th,
+.ebe-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-small);
+}
+
+.ebe-table .poste {
+  font-weight: var(--font-weight-medium);
+}
+
+.ebe-table .total-row {
+  font-weight: var(--font-weight-bold);
+  background-color: var(--bg-secondary);
+}
+
+.ebe-table .alert-indicator {
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* Saisie heures */
+.heures-form {
+  max-width: 400px;
+}
+
+.heures-historique {
+  margin-top: var(--spacing-2xl);
+}
+
+.heures-jour {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.heures-jour:last-child {
+  border-bottom: none;
+}
+
+.heures-jour .date {
+  font-weight: var(--font-weight-medium);
+}
+
+.heures-jour .heures {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-current);
+}
+
+.heures-jour .cout {
+  color: var(--text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* ========================================
+   PAGE HISTORIQUE
+   ======================================== */
+
+.filtres-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.filtre-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.filtre-group label {
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.filtre-group .form-input,
+.filtre-group .form-select {
+  min-width: 150px;
+}
+
+.historique-table {
+  font-size: var(--font-size-small);
+}
+
+.historique-table .status-cell {
+  text-align: center;
+}
+
+.historique-table .actions-cell {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.historique-table .action-btn {
+  padding: var(--spacing-xs);
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.historique-table .action-btn:hover {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* ========================================
+   PAGE PARAMETRES
+   ======================================== */
+
+.parametres-tabs {
+  margin-bottom: var(--spacing-xl);
+}
+
+.param-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.param-section-title {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 2px solid var(--color-current);
+}
+
+.users-table .role-badge {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.users-table .role-badge.admin {
+  background-color: var(--color-rentabilite-light);
+  color: var(--color-rentabilite);
+}
+
+.users-table .role-badge.user {
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.access-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seuils-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.seuil-card {
+  padding: var(--spacing-lg);
+}
+
+.seuil-card h4 {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-md);
+}
+
+.seuil-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.seuil-item:last-child {
+  border-bottom: none;
+}
+
+.seuil-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.seuil-label {
+  flex: 1;
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+.seuil-value {
+  font-weight: var(--font-weight-medium);
+}
+
+/* ========================================
+   PAGE RENTABILITE GLOBALE
+   ======================================== */
+
+.rentabilite-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.rentabilite-legend {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-small);
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.legend-dot.vegas {
+  background-color: var(--color-vegas);
+}
+
+.legend-dot.crepe {
+  background-color: var(--color-crepe);
+}
+
+.legend-dot.total {
+  background-color: var(--color-rentabilite);
+}
+
+.rentabilite-table th.vegas,
+.rentabilite-table td.vegas {
+  background-color: var(--color-vegas-light);
+}
+
+.rentabilite-table th.crepe,
+.rentabilite-table td.crepe {
+  background-color: var(--color-crepe-light);
+}
+
+.rentabilite-table th.total,
+.rentabilite-table td.total {
+  background-color: var(--color-rentabilite-light);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Graphiques */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-2xl);
+}
+
+@media (max-width: 768px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  padding: var(--spacing-xl);
+}
+
+.chart-title {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.chart-placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  color: var(--text-light);
+  font-size: var(--font-size-small);
+}
